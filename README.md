@@ -3,7 +3,31 @@ Delivery microservice for Domain Driven Design & Clean Architecture course
 
 # Getting Started
 
-### Reference Documentation
+## Build
+To build the project (with running tests) run the command:
+
+* in macOS / Linux
+```
+./gradlew build
+```
+* in Windows
+```
+gradlew.bat build
+```
+
+## Run
+To run the application use the command:
+
+* in macOS / Linux
+```
+./gradlew delivery-api:bootRun
+```
+* in Windows
+```
+gradlew.bat delivery-api:bootRun
+```
+
+## Reference Documentation
 For further reference, please consider the following sections:
 
 * [Official Gradle documentation](https://docs.gradle.org)
