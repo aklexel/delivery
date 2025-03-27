@@ -22,6 +22,25 @@ class TransportShould {
     }
 
     @Test
+    fun `not allow to set empty string as name`() {
+        val transport = Transport("bike", 1)
+
+        assertThrows<IllegalArgumentException> { transport.name = "" }
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+        "-1",
+        "0",
+        "4",
+    )
+    fun `not allow to set incorrect speed`(speed: Int) {
+        val transport = Transport("bike", 1)
+
+        assertThrows<IllegalArgumentException> { transport.speed = speed }
+    }
+
+    @Test
     fun `be equal to another instance when both have the same id`() {
         val t1 = Transport("bike", 1)
         val t2 = Transport("bike", 1)
