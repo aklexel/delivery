@@ -39,7 +39,7 @@ class OrderShould {
         val order = Order(UUID.randomUUID(), Location.random())
         val courier = Courier("John", "bike", 2, Location.random())
 
-        courier.status = CourierStatus.BUSY
+        courier.setBusy()
 
         assertThrows<Order.AssignOrderToNotFreeCourierException> {
             order.assign(courier)

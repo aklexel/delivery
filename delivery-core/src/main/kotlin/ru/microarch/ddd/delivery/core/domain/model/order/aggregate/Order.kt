@@ -24,7 +24,7 @@ class Order(override val id: UUID, location: Location) : Entity<UUID>() {
         if (courier.status != CourierStatus.FREE)
             throw AssignOrderToNotFreeCourierException(this, courier)
 
-        courier.status = CourierStatus.BUSY
+        courier.setBusy()
         status = OrderStatus.ASSIGNED
         courierId = courier.id
     }

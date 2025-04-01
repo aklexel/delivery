@@ -44,7 +44,7 @@ class CourierShould {
     fun `allow to set busy status`() {
         val courier = Courier("John", "bike", 2, Location.random())
 
-        courier.status = CourierStatus.BUSY
+        courier.setBusy()
 
         assertEquals(CourierStatus.BUSY, courier.status)
     }
@@ -53,10 +53,10 @@ class CourierShould {
     fun `not allow to set busy status when status is already busy`() {
         val courier = Courier("John", "bike", 2, Location.random())
 
-        courier.status = CourierStatus.BUSY
+        courier.setBusy()
 
         assertThrows<Courier.SetBusyStatusToBusyCourierException> {
-            courier.status = CourierStatus.BUSY
+            courier.setBusy()
         }
     }
 
@@ -64,8 +64,8 @@ class CourierShould {
     fun `allow to set free status`() {
         val courier = Courier("John", "bike", 2, Location.random())
 
-        courier.status = CourierStatus.BUSY
-        courier.status = CourierStatus.FREE
+        courier.setBusy()
+        courier.setFree()
 
         assertEquals(CourierStatus.FREE, courier.status)
     }
@@ -74,11 +74,11 @@ class CourierShould {
     fun `not allow to set free status when status is already free`() {
         val courier = Courier("John", "bike", 2, Location.random())
 
-        courier.status = CourierStatus.BUSY
-        courier.status = CourierStatus.FREE
+        courier.setBusy()
+        courier.setFree()
 
         assertThrows<Courier.SetFreeStatusToFreeCourierException> {
-            courier.status = CourierStatus.FREE
+            courier.setFree()
         }
     }
 

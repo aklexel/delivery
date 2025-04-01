@@ -23,15 +23,21 @@ class Courier(name: String, transportName: String, speed: Int, location: Locatio
         private set
 
     var status: CourierStatus = CourierStatus.FREE
-        set(value) {
-            if (value == CourierStatus.BUSY && field == value)
-                throw SetBusyStatusToBusyCourierException(id)
+        private set
 
-            if (value == CourierStatus.FREE && field == value)
-                throw SetFreeStatusToFreeCourierException(id)
+    fun setBusy() {
+        if (status == CourierStatus.BUSY)
+            throw SetBusyStatusToBusyCourierException(id)
 
-            field = value
-        }
+        status = CourierStatus.BUSY
+    }
+
+    fun setFree() {
+        if (status == CourierStatus.FREE)
+            throw SetFreeStatusToFreeCourierException(id)
+
+        status = CourierStatus.FREE
+    }
 
     fun calculateTimeToLocation(target: Location): Int {
         val distance = location.distance(target).toDouble() / transport.speed
