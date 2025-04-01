@@ -1,13 +1,14 @@
 package ru.microarch.ddd.delivery.core.domain.model.courier.aggregate
 
 import ru.microarch.ddd.delivery.core.domain.model.shared.kernel.Location
+import ru.microarch.ddd.utils.Entity
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.sign
 
-class Transport(name: String, speed: Int) {
-    private val id: UUID = UUID.randomUUID()
+class Transport(name: String, speed: Int) : Entity<UUID>() {
+    override val id: UUID = UUID.randomUUID()
 
     var name: String = name
         set(value) {
@@ -34,19 +35,6 @@ class Transport(name: String, speed: Int) {
         require(speed in MIN_SPEED..MAX_SPEED) {
             "speed must be between $MIN_SPEED and $MAX_SPEED"
         }
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (this.javaClass != other?.javaClass) return false
-
-        other as Transport
-
-        return this.id == other.id
-    }
-
-    override fun hashCode(): Int {
-        return id.hashCode()
     }
 
     override fun toString(): String {
