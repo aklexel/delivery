@@ -1,7 +1,7 @@
 package ru.microarch.ddd.utils
 
-abstract class Entity<IdT> {
-    abstract val id: IdT
+abstract class Entity<ID> {
+    abstract val id: ID
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

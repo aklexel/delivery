@@ -7,8 +7,9 @@ import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.sign
 
-class Transport(name: String, speed: Int) : Entity<UUID>() {
-    override val id: UUID = UUID.randomUUID()
+class Transport private constructor(override val id: UUID, name: String, speed: Int) : Entity<UUID>() {
+
+    constructor(name: String, speed: Int) : this(UUID.randomUUID(), name, speed)
 
     var name: String = name
         set(value) {
@@ -56,5 +57,8 @@ class Transport(name: String, speed: Int) : Entity<UUID>() {
     companion object {
         const val MIN_SPEED = 1
         const val MAX_SPEED = 3
+
+        fun from(id: UUID, name: String, speed: Int): Transport =
+            Transport(id, name, speed)
     }
 }

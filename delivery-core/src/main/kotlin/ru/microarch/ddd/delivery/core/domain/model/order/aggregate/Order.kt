@@ -36,6 +36,20 @@ class Order(override val id: UUID, location: Location) : Entity<UUID>() {
         status = OrderStatus.COMPLETED
     }
 
+    override fun toString(): String {
+        return "Order(id=$id, location=$location, status=$status), courierId=$courierId)"
+    }
+
+    companion object {
+        fun from(id: UUID, location: Location, status: OrderStatus, courierId: UUID?): Order {
+            val order = Order(id, location)
+            order.status = status
+            order.courierId = courierId
+
+            return order
+        }
+    }
+
     class AssignOrderToNotFreeCourierException(order: Order, courier: Courier) :
         RuntimeException("Order <${order.id}> cannot be assigned to courier <${courier.id}> with status <${courier.status}>")
 
