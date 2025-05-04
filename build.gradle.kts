@@ -22,6 +22,8 @@ subprojects {
     apply {
         plugin("org.jetbrains.kotlin.jvm")
         plugin("org.jetbrains.kotlin.plugin.spring")
+        plugin("org.springframework.boot")
+        plugin("io.spring.dependency-management")
     }
 
     kotlin {

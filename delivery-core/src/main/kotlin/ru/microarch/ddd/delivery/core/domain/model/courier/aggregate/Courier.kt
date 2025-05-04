@@ -5,9 +5,21 @@ import ru.microarch.ddd.utils.Entity
 import java.util.*
 import kotlin.math.ceil
 
-class Courier(name: String, transportName: String, speed: Int, location: Location) : Entity<UUID>() {
+class Courier private constructor(
+    override val id: UUID,
+    name: String,
+    transport: Transport,
+    location: Location,
+    status: CourierStatus
+) : Entity<UUID>() {
 
-    override val id: UUID = UUID.randomUUID()
+    constructor(name: String, transportName: String, speed: Int, location: Location) : this(
+        UUID.randomUUID(),
+        name,
+        Transport(transportName, speed),
+        location,
+        CourierStatus.FREE
+    )
 
     init {
         require(name.isNotBlank()) { "Name must not be blank" }
@@ -16,13 +28,13 @@ class Courier(name: String, transportName: String, speed: Int, location: Locatio
     var name = name
         private set
 
-    var transport: Transport = Transport(transportName, speed)
+    var transport: Transport = transport
         private set
 
     var location: Location = location
         private set
 
-    var status: CourierStatus = CourierStatus.FREE
+    var status: CourierStatus = status
         private set
 
     fun setBusy() {
@@ -46,6 +58,16 @@ class Courier(name: String, transportName: String, speed: Int, location: Locatio
 
     fun move(target: Location) {
         location = transport.move(location, target)
+    }
+
+    override fun toString(): String {
+        return "Courier(id=$id, name=$name, transport=$transport, location=$location, status=$status)"
+    }
+
+    companion object {
+        fun from(id: UUID, name: String, transport: Transport, location: Location, status: CourierStatus): Courier {
+            return Courier(id, name, transport, location, status)
+        }
     }
 
     class SetBusyStatusToBusyCourierException(id: UUID) :

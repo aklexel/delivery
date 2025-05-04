@@ -1,9 +1,21 @@
 spring:
   application:
     name: delivery
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/test
+    username: test
+    password: test
 
 management:
   endpoints:
     web:
       exposure:
         include: health
+
+logging:
+  level:
+    io:
+      r2dbc:
+        postgresql:
+          QUERY: DEBUG
+          PARAM: DEBUG
