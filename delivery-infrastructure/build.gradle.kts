@@ -1,3 +1,7 @@
+plugins {
+    id("java-test-fixtures")
+}
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
     implementation("name.nkonev.r2dbc-migrate:r2dbc-migrate-spring-boot-starter:3.2.0")
@@ -11,5 +15,14 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    testImplementation("org.testcontainers:postgresql:1.21.0")
+    testImplementation(testFixtures(project(":delivery-infrastructure")))
+
+    testFixturesApi("org.testcontainers:postgresql:1.21.0")
+    testFixturesImplementation("org.springframework.boot:spring-boot-starter-test")
+    testFixturesImplementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+    testFixturesImplementation("name.nkonev.r2dbc-migrate:r2dbc-migrate-spring-boot-starter:3.2.0")
+}
+
+tasks.bootJar {
+    enabled = false
 }

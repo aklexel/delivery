@@ -22,3 +22,7 @@ gradle-app.setting
 
 #IDEA
 .idea
+#VS Code
+.vscode
+
+.gitignore

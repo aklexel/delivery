@@ -5,7 +5,6 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest
 import org.springframework.test.context.ContextConfiguration
-import ru.microarch.ddd.delivery.infrastructure.adapters.postgres.TestConfiguration
 import java.lang.annotation.Inherited
 
 
@@ -14,7 +13,7 @@ import java.lang.annotation.Inherited
 @Inherited
 
 @ContextConfiguration(
-    classes = [TestConfiguration::class, R2dbcAutoConfiguration::class, R2dbcMigrateAutoConfiguration::class],
+    classes = [R2dbcAutoConfiguration::class, R2dbcMigrateAutoConfiguration::class],
     initializers = [PostgresContainerInitializer::class]
 )
 @ExtendWith(RunSqlExtension::class)

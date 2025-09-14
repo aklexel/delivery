@@ -1,4 +1,4 @@
-package ru.microarch.ddd.delivery.infrastructure.adapters.postgres
+package ru.microarch.ddd.delivery.infrastructure.adapters.postgres.configuration
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -7,11 +7,12 @@ import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories
 import org.springframework.transaction.ReactiveTransactionManager
 import ru.microarch.ddd.delivery.core.ports.CourierRepository
 import ru.microarch.ddd.delivery.core.ports.OrderRepository
+import ru.microarch.ddd.delivery.infrastructure.adapters.postgres.UnitOfWorkImpl
 import ru.microarch.ddd.delivery.infrastructure.adapters.postgres.repository.*
 import ru.microarch.ddd.utils.UnitOfWork
 
 @Configuration
-@EnableR2dbcRepositories
+@EnableR2dbcRepositories("ru.microarch.ddd.delivery.infrastructure.adapters.postgres")
 class TestConfiguration {
 
     @Autowired
