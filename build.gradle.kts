@@ -15,6 +15,7 @@ allprojects {
 
     tasks.withType<Test> {
         useJUnitPlatform()
+        jvmArgs("-Xshare:off")
     }
 }
 
