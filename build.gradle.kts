@@ -1,8 +1,7 @@
 plugins {
-    kotlin("jvm") version "1.9.25"
-    kotlin("plugin.spring") version "2.1.20"
-    id("org.springframework.boot") version "3.4.4" apply false
-    id("io.spring.dependency-management") version "1.1.7" apply false
+    kotlin("jvm")
+    kotlin("plugin.spring")
+    id("org.springframework.boot") apply false
 }
 
 allprojects {
@@ -15,19 +14,31 @@ allprojects {
 
     tasks.withType<Test> {
         useJUnitPlatform()
+        jvmArgs("-Xshare:off")
     }
 }
+
+val springBootProjects = listOf(
+    "delivery-api",
+    "delivery-infrastructure",
+)
 
 subprojects {
     apply {
         plugin("org.jetbrains.kotlin.jvm")
-        plugin("org.jetbrains.kotlin.plugin.spring")
-        plugin("org.springframework.boot")
-        plugin("io.spring.dependency-management")
+
+        if (project.name in springBootProjects) {
+            plugin("org.springframework.boot")
+            plugin("org.jetbrains.kotlin.plugin.spring")
+        }
+    }
+
+    dependencies {
+        implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
     }
 
     kotlin {
-        jvmToolchain(17)
+        jvmToolchain(21)
         compilerOptions {
             freeCompilerArgs.addAll("-Xjsr305=strict")
         }

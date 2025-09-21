@@ -10,4 +10,5 @@ dependencies {
 	implementation(project(":delivery-infrastructure"))
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation(testFixtures(project(":delivery-infrastructure")))
 }

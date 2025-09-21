@@ -9,12 +9,12 @@ import ru.microarch.ddd.delivery.core.domain.model.courier.aggregate.Courier
 import ru.microarch.ddd.delivery.core.domain.model.courier.aggregate.CourierStatus
 import ru.microarch.ddd.delivery.core.domain.model.shared.kernel.Location
 import ru.microarch.ddd.delivery.core.ports.CourierRepository
-import ru.microarch.ddd.delivery.infrastructure.adapters.postgres.extension.PostgresTest
 import ru.microarch.ddd.delivery.infrastructure.adapters.postgres.extension.RunSql
+import ru.microarch.ddd.delivery.infrastructure.adapters.postgres.configuration.IntegrationTest
 import ru.microarch.ddd.utils.toUUID
 import kotlin.test.*
 
-@PostgresTest
+@IntegrationTest
 class CourierRepositoryShould {
 
     @Autowired

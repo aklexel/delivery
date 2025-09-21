@@ -10,15 +10,15 @@ import ru.microarch.ddd.delivery.core.ports.CourierRepository
 import ru.microarch.ddd.delivery.core.ports.OrderRepository
 import ru.microarch.ddd.delivery.infrastructure.adapters.postgres.CourierRepositoryShould.Companion.assertCourierEquals
 import ru.microarch.ddd.delivery.infrastructure.adapters.postgres.OrderRepositoryShould.Companion.assertOrderEquals
-import ru.microarch.ddd.delivery.infrastructure.adapters.postgres.extension.PostgresTest
 import ru.microarch.ddd.delivery.infrastructure.adapters.postgres.extension.RunSql
+import ru.microarch.ddd.delivery.infrastructure.adapters.postgres.configuration.IntegrationTest
 import ru.microarch.ddd.utils.UnitOfWork
 import ru.microarch.ddd.utils.toUUID
 import java.lang.RuntimeException
 import java.util.UUID
 import kotlin.test.*
 
-@PostgresTest
+@IntegrationTest
 class UnitOfWorkShould {
 
     @Autowired
