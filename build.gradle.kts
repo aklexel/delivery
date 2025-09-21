@@ -1,7 +1,7 @@
 plugins {
-    kotlin("jvm") version "1.9.25"
-    kotlin("plugin.spring") version "2.1.20"
-    id("org.springframework.boot") version "3.5.6" apply false
+    kotlin("jvm")
+    kotlin("plugin.spring")
+    id("org.springframework.boot") apply false
 }
 
 allprojects {
@@ -38,7 +38,7 @@ subprojects {
     }
 
     kotlin {
-        jvmToolchain(17)
+        jvmToolchain(21)
         compilerOptions {
             freeCompilerArgs.addAll("-Xjsr305=strict")
         }
