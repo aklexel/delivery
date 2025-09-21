@@ -1,8 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "2.1.20"
-    id("org.springframework.boot") version "3.4.4" apply false
-    id("io.spring.dependency-management") version "1.1.7" apply false
+    id("org.springframework.boot") version "3.5.6" apply false
 }
 
 allprojects {
@@ -30,9 +29,12 @@ subprojects {
 
         if (project.name in springBootProjects) {
             plugin("org.springframework.boot")
-            plugin("io.spring.dependency-management")
             plugin("org.jetbrains.kotlin.plugin.spring")
         }
+    }
+
+    dependencies {
+        implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
     }
 
     kotlin {

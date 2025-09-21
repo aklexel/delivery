@@ -21,6 +21,7 @@ dependencies {
     testFixturesImplementation("org.springframework.boot:spring-boot-starter-test")
     testFixturesImplementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
     testFixturesImplementation("name.nkonev.r2dbc-migrate:r2dbc-migrate-spring-boot-starter:3.2.0")
+    testFixturesImplementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
 }
 
 tasks.bootJar {
